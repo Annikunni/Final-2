@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel Puzzle</title>
+
+
+    <style>
+
+        body {
+            background-color: black;
+        }
+
+		body::after {
+			position: absolute;
+			width: 0;
+			height: 0;
+			overflow: hidden;
+			z-index: -1;
+			content: url(heart.jpeg);
+		}
+
+        .space {
+           
+            height: 20px;
+            /*border: 10px solid pink;*/
+            background-color: black;
+        }
+
+        .table   {
+            align-items: center;
+            margin: 20px auto;
+            border: 1px solid white;
+            background-color: rgb(90, 89, 89);
+            color: white;
+            font-size: 15px;
+        }
+
+        table, th, td {
+            text-align: center;
+            border: 2px solid black;
+            border-collapse: collapse;
+            border-radius: 25px;
+            padding: 7px;
+            
+            
+        }
+
+        /*.head {
+            border: 1px solid yellow;
+            border-collapse: collapse;
+        }
+
+
+
+        .num {
+            border: 1px dotted yellow;
+        }
+
+        #line {
+            border:1px dotted yellow ;
+        }*/
+
+        .box1 {
+            width: 30px;
+            height: 40px;
+            background-color: #151a0e;
+        }
+
+        .box2 {
+            width: 30px;
+            height: 40px;
+            background-color: #122624;
+        }
+
+        .box3 {
+            width: 30px;
+            height: 40px;
+            background-color: #143131;
+        }
+
+        .box4 {
+            width: 30px;
+            height: 40px;
+            background-color: #1e4350;
+        }
+
+        .box5 {
+            width: 30px;
+            height: 40px;
+            background-color: #132e25;
+        }
+
+        .box6 {
+            width: 30px;
+            height: 40px;
+            background-color: #133640;
+        }
+
+        .box7 {
+            width: 30px;
+            height: 40px;
+            background-color: #233f35;
+        }
+
+        .box8 {
+            width: 30px;
+            height: 40px;
+            background-color: #1c2f2b;
+        }
+
+        .box9 {
+            width: 30px;
+            height: 40px;
+            background-color: #28555f;
+        }
+
+        .box10 {
+            width: 30px;
+            height: 40px;
+            background-color: #294342;
+        }
+
+        .box11 {
+            width: 30px;
+            height: 40px;
+            background-color: #e45ba1;
+        }
+
+        .box12 {
+            width: 30px;
+            height: 40px;
+            background-color: #c470aa;
+        }
+
+        .box13 {
+            width: 30px;
+            height: 40px;
+            background-color: #d44d8e;
+        }
+
+        .box14 {
+            width: 30px;
+            height: 40px;
+            background-color: #c98abc;
+        }
+
+        .box15 {
+            width: 30px;
+            height: 40px;
+            background-color: #8f769d;
+        }
+
+        .box16 {
+            width: 30px;
+            height: 40px;
+            background-color: #e075ae;
+        }
+
+        .box17 {
+            width: 30px;
+            height: 40px;
+            background-color: #e9b0d0;
+        }
+
+        .box18 {
+            width: 30px;
+            height: 40px;
+            background-color: #b09dc7;
+        }
+
+       .box19 {
+            width: 30px;
+            height: 40px;
+            background-color: #352033;
+        }
+
+        .box20 {
+            width: 30px;
+            height: 40px;
+            background-color: #836b53;
+        }
+
+
+       #myCanvas {
+        background-color: black;
+       }
+
+        canvas[resize] {
+        width: 85%;
+        height: 85%;
+        margin-left: 15vh;
+        border: 2px solid white;
+        }
+
+		.img1 {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			transition: transform .2s;
+		}
+
+		.img1:hover {
+			-ms-transform: scale(1.5); 
+           -webkit-transform: scale(1.5); 
+            transform: scale(2.5); 
+			margin-top: 150px;
+			margin-right: 300px;
+		}
+
+		.text {
+			position: absolute;
+			top: 10px;
+			width: 100vw;
+			height: 200px;
+			color: orangered;
+			font-size: 40px;
+			font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+		}
+
+	
+    </style>
+    
+</head>
+<body>
+    <div class="img2"><img src="Flower pixel.png" height="200px"></div>
+	<div class="text"><center>Color Code</center></div>
+    <div class="img1"><img src="flower.jpg" height="200px"></div>
+    <div class="space"></div>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th class="head">Color Box</th>
+                <td><div id="line" class="box1"></div></td>
+                <td><div id="line" class="box2"></div></td>
+                <td><div id="line" class="box3"></div></td>
+                <td><div id="line" class="box4"></div></td>
+                <td><div id="line" class="box5"></div></td>
+                <td><div id="line" class="box6"></div></td>
+                <td><div id="line" class="box7"></div></td>
+                <td><div id="line" class="box8"></div></td>
+                <td><div id="line" class="box9"></div></td>
+                <td><div id="line" class="box10"></div></td>
+                <td><div id="line" class="box11"></div></td>
+                <td><div id="line" class="box12"></div></td>
+                <td><div id="line" class="box13"></div></td>
+                <td><div id="line" class="box14"></div></td>
+                <td><div id="line" class="box15"></div></td>
+                <td><div id="line" class="box16"></div></td>
+                <td><div id="line" class="box17"></div></td>
+                <td><div id="line" class="box18"></div></td>
+                <td><div id="line" class="box19"></div></td>
+                <td><div id="line" class="box20"></div></td>
+            </tr>
+            
+            <tr>
+                <th class="head">Click on Keyboard</th>
+                <td><div class="num">1</div></td>
+                <td><div class="num">2</div></td>
+                <td><div class="num">3</div></td>
+                <td><div class="num">4</div></td>
+                <td><div class="num">5</div></td>
+                <td><div class="num">6</div></td>
+                <td><div class="num">7</div></td>
+                <td><div class="num">8</div></td>
+                <td><div class="num">9</div></td>
+                <td><div class="num">0</div></td>
+                <td><div class="num">q</div></td>
+                <td><div class="num">w</div></td>
+                <td><div class="num">e</div></td>
+                <td><div class="num">r</div></td>
+                <td><div class="num">t</div></td>
+                <td><div class="num">y</div></td>
+                <td><div class="num">u</div></td>
+                <td><div class="num">i</div></td>
+                <td><div class="num">o</div></td>
+                <td><div class="num">p</div></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <canvas id="myCanvas" resize></canvas> 
+
+	
+      
+   
+			
+    <script type="text/javascript">
+		function zoomin() {
+            var GFG = document.getElementById("img1");
+            var currWidth = GFG.clientWidth;
+            GFG.style.width = (currWidth + 500) + "px";
+        }
+          
+        function zoomout() {
+            var GFG = document.getElementById("img1");
+            var currWidth = GFG.clientWidth;
+            GFG.style.width = (currWidth - 500) + "px";
+        }
+	</script> 
+
+<script type="text/javascript"  src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.12.17/paper-full.min.js" integrity="sha512-NApOOz1j2Dz1PKsIvg1hrXLzDFd62+J0qOPIhm8wueAnk4fQdSclq6XvfzvejDs6zibSoDC+ipl1dC66m+EoSQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+
+
+<script type="text/paperscript" canvas="myCanvas">
+    var path = new Path(new Point(45, 20), new Point(110,20));
+var path2 = new Path(new Point(45, 20), new Point(110,20));
+var path3 = new Path(new Point(45, 20), new Point(110,20));
+var path4 = new Path(new Point(45, 20), new Point(110,20));
+var path5 = new Path(new Point(45, 20), new Point(110,20));
+var path6 = new Path(new Point(45, 20), new Point(110,20));
+var path7 = new Path(new Point(45, 20), new Point(110,20));
+var path8 = new Path(new Point(45, 20), new Point(110,20));
+var path9 = new Path(new Point(45, 20), new Point(110,20));
+var path10 = new Path(new Point(45, 20), new Point(110,20));
+var path11 = new Path(new Point(45, 20), new Point(110,20));
+var path12 = new Path(new Point(45, 20), new Point(110,20));
+var path13 = new Path(new Point(45, 20), new Point(110,20));
+var path14 = new Path(new Point(45, 20), new Point(110,20));
+var path15 = new Path(new Point(45, 20), new Point(110,20));
+var path16 = new Path(new Point(45, 20), new Point(110,20));
+var path17 = new Path(new Point(45, 20), new Point(110,20));
+var path18 = new Path(new Point(45, 20), new Point(110,20));
+var path19 = new Path(new Point(45, 20), new Point(110,20));
+var path20 = new Path(new Point(45, 20), new Point(110,20));
+
+
+path.style = {
+strokeColor: '#151a0e',
+strokeWidth: 33,
+};
+
+path2.style = {
+strokeColor: '#122624',
+strokeWidth: 33,
+};
+
+path3.style = {
+strokeColor: '#143131',
+strokeWidth: 33,
+};
+
+path4.style = {
+strokeColor: '#1e4350',
+strokeWidth: 33,
+};
+
+path5.style = {
+strokeColor: '#132e25',
+strokeWidth: 33,
+};
+
+path6.style = {
+strokeColor: '#133640',
+strokeWidth: 33,
+};
+
+path7.style = {
+strokeColor: '#233f35',
+strokeWidth: 33,
+};
+
+path8.style = {
+strokeColor: '#1c2f2b',
+strokeWidth: 33,
+};
+
+path9.style = {
+strokeColor: '#28555f',
+strokeWidth: 33,
+};
+
+path10.style = {
+strokeColor: '#294342',
+strokeWidth: 33,
+};
+
+path11.style = {
+strokeColor: '#e45ba1',
+strokeWidth: 33,
+};
+
+path12.style = {
+strokeColor: '#c470aa',
+strokeWidth: 33,
+};
+
+path13.style = {
+strokeColor: '#d44d8e',
+strokeWidth: 33,
+};
+
+path14.style = {
+strokeColor: '#c98abc',
+strokeWidth: 33,
+};
+
+path15.style = {
+strokeColor: '#8f769d',
+strokeWidth: 33,
+};
+
+path16.style = {
+    strokeColor: '#e075ae',
+    strokeWidth: 33,   
+};
+    
+path17.style = {
+strokeColor: '#e9b0d0',
+strokeWidth: 33,
+};
+    
+path18.style = {
+strokeColor: '#b09dc7',
+strokeWidth: 33,
+};
+
+path19.style = {
+strokeColor: '#352033',
+strokeWidth: 33,
+};
+        
+path20.style = {
+strokeColor: '#836b53',
+strokeWidth: 33,
+};
+    
+
+// Create a symbol from the path:
+var symbol1 = new Symbol(path);
+var symbol2 = new Symbol(path2);
+var symbol3 = new Symbol(path3);
+var symbol4 = new Symbol(path4);
+var symbol5 = new Symbol(path5);
+var symbol6 = new Symbol(path6);
+var symbol7 = new Symbol(path7);
+var symbol8 = new Symbol(path8);
+var symbol9 = new Symbol(path9);
+var symbol10 = new Symbol(path10);
+var symbol11 = new Symbol(path11);
+var symbol12 = new Symbol(path12);
+var symbol13 = new Symbol(path13);
+var symbol14 = new Symbol(path14);
+var symbol15 = new Symbol(path15);
+var symbol16 = new Symbol(path16);
+var symbol17 = new Symbol(path17);
+var symbol18 = new Symbol(path18);
+var symbol19 = new Symbol(path19);
+var symbol20 = new Symbol(path20);
+
+var drawGridLines = function(num_rectangles_wide, num_rectangles_tall, boundingRect) {
+var width_per_rectangle = boundingRect.width / num_rectangles_wide;
+var height_per_rectangle = boundingRect.height / num_rectangles_tall;
+for (var i = 0; i <= num_rectangles_wide; i++) {
+    var xPos = boundingRect.left + i * width_per_rectangle;
+    var topPoint = new paper.Point(xPos, boundingRect.top);
+    var bottomPoint = new paper.Point(xPos, boundingRect.bottom);
+    var aLine = new paper.Path.Line(topPoint, bottomPoint);
+    aLine.strokeColor = 'black';
+}
+for (var i = 0; i <= num_rectangles_tall; i++) {
+    var yPos = boundingRect.top + i * height_per_rectangle;
+    var leftPoint = new paper.Point(boundingRect.left, yPos);
+    var rightPoint = new paper.Point(boundingRect.right, yPos);
+    var aLine = new paper.Path.Line(leftPoint, rightPoint);
+    aLine.strokeColor = 'black';
+}
+}
+
+drawGridLines(14, 14, paper.view.bounds);
+
+var drawGridRects = function(num_rectangles_wide, num_rectangles_tall, boundingRect) {
+var width_per_rectangle = boundingRect.width / num_rectangles_wide;
+var height_per_rectangle = boundingRect.height / num_rectangles_tall;
+for (var i = 0; i < num_rectangles_wide; i++) {
+    for (var j = 0; j < num_rectangles_tall; j++) {
+        var aRect = new paper.Path.Rectangle(boundingRect.left + i * width_per_rectangle, boundingRect.top + j * height_per_rectangle, width_per_rectangle, height_per_rectangle);
+        aRect.strokeColor = 'white';
+        //aRect.fillColor = Color.random();
+    }
+}
+}
+
+drawGridRects(14, 14, paper.view.bounds);
+
+tool.onKeyDown = function(event) {
+if (event.key == '1') {
+    for (var i = 0; i <11; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol1.place(position);
+        
+    }
+}
+
+if (event.key == '2') {
+    for (var i = 0; i <11; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol2.place(position);
+        
+    }
+}
+
+if (event.key == '3') {
+    for (var i = 0; i <17; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol3.place(position);
+        
+    }
+}
+
+if (event.key == '4') {
+    for (var i = 0; i <18; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol4.place(position);
+        
+    }
+}
+
+if (event.key == '5') {
+    for (var i = 0; i <10; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol5.place(position);
+        
+    }
+}
+
+if (event.key == '6') {
+    for (var i = 0; i <8; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol6.place(position);
+        
+    }
+}
+
+if (event.key == '7') {
+    for (var i = 0; i <8; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol7.place(position);
+        
+    }
+}
+
+if (event.key == '8') {
+    for (var i = 0; i <6; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol8.place(position);
+        
+    }
+}
+
+if (event.key == '9') {
+    for (var i = 0; i <4; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol9.place(position);
+        
+    }
+}
+
+if (event.key == '0') {
+    for (var i = 0; i <4; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol10.place(position);
+        
+    }		
+}
+
+if (event.key == 'q') {
+    for (var i = 0; i <2; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol11.place(position);
+        
+    }	
+}
+
+if (event.key == 'w') {
+    for (var i = 0; i <7; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol12.place(position);
+        
+    }
+}
+
+if (event.key == 'e') {
+    for (var i = 0; i <3; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol13.place(position);
+        
+    }
+}
+
+if (event.key == 'r') {
+    for (var i = 0; i <8; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol14.place(position);
+        
+    }		
+}
+
+if (event.key == 't') {
+    for (var i = 0; i <9; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol15.place(position);
+        
+    }			
+}
+
+if (event.key == 'y') {
+    for (var i = 0; i <6; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol16.place(position);
+        
+    }			
+}
+
+if (event.key == 'u') {
+    for (var i = 0; i <6; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol17.place(position);
+        
+    }			
+}
+
+if (event.key == 'i') {
+    for (var i = 0; i <7; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol18.place(position);
+        
+    }			
+}
+
+if (event.key == 'o') {
+    for (var i = 0; i <6; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol19.place(position);
+        
+    }			
+}
+
+if (event.key == 'p') {
+    for (var i = 0; i <6; i++) {
+        var position = view.size * Point.random();
+        var placed = symbol20.place(position);
+        
+    }			
+}
+
+
+
+
+}
+
+
+
+
+/*function onFrame(event) {
+// Each frame, rotate the definition
+// of the symbol by 1 degree:
+//symbol.definition.rotate(0);
+
+// Add 0.2 degrees to the stroke color's hue:
+//symbol.definition.strokeColor.hue += 0.2;
+}*/
+
+var hitOptions = {
+segments: false,
+stroke: true,
+fill: true,
+/*tolerance: 9*/
+};
+
+var segment, path;
+var movePath = false;
+function onMouseDown(event) {
+segment = path = null;
+var hitResult = project.hitTest(event.point, hitOptions);
+if (!hitResult)
+    return;
+
+if (event.modifiers.shift) {
+    if (hitResult.type == 'segment') {
+        hitResult.segment.remove();
+    };
+    return;
+}
+
+if (hitResult) {
+    path = hitResult.item;
+    if (hitResult.type == 'segment') {
+        segment = hitResult.segment;
+    } else if (hitResult.type == 'stroke') {
+        var location = hitResult.location;
+        //segment = path.insert(location.index + 1, event.point);
+        //path.smooth();
+    }
+}
+
+}
+
+function onMouseMove(event) {
+project.activeLayer.selected = false;
+if (event.item)
+    event.item.selected = true;
+}
+
+function onMouseDrag(event) {
+if (segment) {
+    segment.point += event.delta;
+    //path.smooth();
+} else if (path) {
+    path.position += event.delta;
+}
+}
+
+
+    
+</script>
+
+    
+</body>
+</html>
